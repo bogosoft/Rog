@@ -231,6 +231,12 @@ namespace Rog.Tests
         }
 
         [TestCase]
+        public void DictionariesWithStringKeysNeverAssignNullsAsStrings()
+        {
+            var dictionaries = GenerateInstancesOf<IDictionary<string, DateTimeOffset>>();
+        }
+
+        [TestCase]
         public void MaxLengthAttributeOnArraysIsHonored()
         {
             var maxlen = 8;

@@ -50,9 +50,16 @@ namespace Rog
 
             var size = context.NextInt32(minlen, maxlen);
 
+            var attributes = new List<Attribute>();
+
+            if (argTypes[0] == typeof(string) && context.NullChance > 0)
+            {
+                attributes.Add(new RequiredAttribute());
+            }
+
             for (var i = 0; i < size; i++)
             {
-                args[0] = context.Generate(argTypes[0]);
+                args[0] = context.Generate(argTypes[0], attributes);
                 args[1] = context.Generate(argTypes[1]);
 
                 method.Invoke(dictionary, args);
