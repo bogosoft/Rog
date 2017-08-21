@@ -8,9 +8,9 @@
 			<frameworkAssembly assemblyName="System.ComponentModel.DataAnnotations" />
 		</frameworkAssemblies>
 		<id>$id$</id>
-		<licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
+		<licenseUrl>https://raw.githubusercontent.com/bogosoft/Rog/master/LICENSE</licenseUrl>
 		<owners>$author$</owners>
-		<projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
+		<projectUrl>https://github.com/bogosoft/Rog</projectUrl>
 		<version>$version$</version>
 		<tags>random object generation</tags>
 		<title>$title$</title>
