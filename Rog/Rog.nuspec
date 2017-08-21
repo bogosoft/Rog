@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+	<metadata>
+		<authors>$author$</authors>
+		<copyright>Copyright 2017</copyright>
+		<description>$description$</description>
+		<frameworkAssemblies>
+			<frameworkAssembly assemblyName="System.ComponentModel.DataAnnotations" />
+		</frameworkAssemblies>
+		<id>$id$</id>
+		<licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
+		<owners>$author$</owners>
+		<projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
+		<version>$version$</version>
+		<tags>random object generation</tags>
+		<title>$title$</title>
+	</metadata>
+</package>
