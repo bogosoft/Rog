@@ -4,26 +4,21 @@ using System.ComponentModel.DataAnnotations;
 namespace Rog
 {
     /// <summary>
-    /// An implementation of the <see cref="IValueProvider"/> contract that can generate strings
+    /// An implementation of the <see cref="NullProviderBase"/> contract that can generate strings
     /// of random length and content. This class honors the <see cref="MaxLengthAttribute"/>
     /// and <see cref="MinLengthAttribute"/> attributes.
     /// </summary>
-    public class RandomStringProvider : IValueProvider
+    public class RandomStringProvider : NullProviderBase
     {
         /// <summary>
-        /// Get a string from the current provider.
+        /// When overridden in a derived class, returns a value that is not null.
         /// </summary>
         /// <param name="context">
-        /// The context within which a string will be generated.
+        /// The context within which a value will be generated.
         /// </param>
-        /// <returns>A string of random length and characters..</returns>
-        public object GetValue(GenerationContext context)
+        /// <returns>A generated non-null value.</returns>
+        protected override object GetNonNullValue(GenerationContext context)
         {
-            if (!context.HasAttribute<RequiredAttribute>() && context.RollForNull())
-            {
-                return null;
-            }
-
             int maxlen, minlen;
 
             if (context.HasAttribute<MaxLengthAttribute>())
@@ -59,7 +54,7 @@ namespace Rog
         /// <returns>
         /// True if the given type can be used to generate a value for; false otherwise.
         /// </returns>
-        public bool Matches(Type type)
+        public override bool Matches(Type type)
         {
             return type == typeof(string);
         }

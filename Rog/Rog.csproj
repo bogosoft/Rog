@@ -46,7 +46,10 @@
     <Compile Include="AbstractionProvider.cs" />
     <Compile Include="DictionaryProvider.cs" />
     <Compile Include="GenericAbstractionProvider.cs" />
+    <Compile Include="INullProvider.cs" />
     <Compile Include="ListProvider.cs" />
+    <Compile Include="NullProviderBase.cs" />
+    <Compile Include="Percentage.cs" />
     <Compile Include="RandomKeyValuePairProvider.cs" />
     <Compile Include="TypedArrayProvider.cs" />
     <Compile Include="Constructor.cs" />

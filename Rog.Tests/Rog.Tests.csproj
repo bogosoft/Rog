@@ -51,6 +51,7 @@
     <Compile Include="GasGiant.cs" />
     <Compile Include="IPlanet.cs" />
     <Compile Include="MemberInfoExtensions.cs" />
+    <Compile Include="PercentageTests.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="DefaultPlanet.cs" />
     <Compile Include="PlanetSize.cs" />
