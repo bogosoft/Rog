@@ -47,6 +47,7 @@
     <Compile Include="DictionaryProvider.cs" />
     <Compile Include="GenericAbstractionProvider.cs" />
     <Compile Include="ListProvider.cs" />
+    <Compile Include="Percentage.cs" />
     <Compile Include="RandomKeyValuePairProvider.cs" />
     <Compile Include="TypedArrayProvider.cs" />
     <Compile Include="Constructor.cs" />
