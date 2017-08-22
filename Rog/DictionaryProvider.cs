@@ -11,6 +11,8 @@ namespace Rog
     /// </summary>
     public sealed class DictionaryProvider : IValueProvider
     {
+        static Attribute[] Required = new Attribute[] { new RequiredAttribute() };
+
         /// <summary>
         /// Get a value from the current provider.
         /// </summary>
@@ -50,16 +52,9 @@ namespace Rog
 
             var size = context.NextInt32(minlen, maxlen);
 
-            var attributes = new List<Attribute>();
-
-            if (argTypes[0] == typeof(string) && context.NullChance > 0)
-            {
-                attributes.Add(new RequiredAttribute());
-            }
-
             for (var i = 0; i < size; i++)
             {
-                args[0] = context.Generate(argTypes[0], attributes);
+                args[0] = context.Generate(argTypes[0], Required);
                 args[1] = context.Generate(argTypes[1]);
 
                 method.Invoke(dictionary, args);

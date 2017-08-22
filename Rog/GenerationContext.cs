@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 
@@ -16,7 +17,6 @@ namespace Rog
         /// </summary>
         public static readonly Attribute[] NoAttributes = new Attribute[0];
 
-        float nullChance;
         IRandomNumberGenerator rng;
         IRandomObjectGenerator rog;
 
@@ -56,24 +56,6 @@ namespace Rog
         public int MinStringLength;
 
         /// <summary>
-        /// Get or set the chance, as a value between 0 and 1, that a value generated against
-        /// a nullable type and the current context will be null.
-        /// </summary>
-        public float NullChance
-        {
-            get { return nullChance; }
-            set
-            {
-                if (value < 0 || value > 1)
-                {
-                    throw new ArgumentException("Null chance must be between 0 and 1.");
-                }
-
-                nullChance = value;
-            }
-        }
-
-        /// <summary>
         /// Create a new instance of the <see cref="GenerationContext"/> structure.
         /// </summary>
         /// <param name="rng">
@@ -84,8 +66,6 @@ namespace Rog
         /// </param>
         public GenerationContext(IRandomNumberGenerator rng, IRandomObjectGenerator rog)
         {
-            nullChance = 0;
-
             AssociatedAttributes = NoAttributes;
             CurrentType = null;
             Encoding = null;
@@ -164,17 +144,6 @@ namespace Rog
         public int NextInt32(int minval, int maxval)
         {
             return rng.NextInt32(minval, maxval);
-        }
-
-        /// <summary>
-        /// Get a value corresponding to whether or not a null should be returned.
-        /// </summary>
-        /// <returns>
-        /// True if the roll was succesful; false otherwise.
-        /// </returns>
-        public bool RollForNull()
-        {
-            return rng.NextInt32(0, 99) < 100 * nullChance;
         }
     }
 }
