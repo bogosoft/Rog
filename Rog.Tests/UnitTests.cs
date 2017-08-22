@@ -90,7 +90,7 @@ namespace Rog.Tests
         {
             var generator = RandomObjectGenerator.Default;
 
-            generator.NullChance = 0;
+            generator.SetNullChanceFor<RandomStringProvider>(0);
 
             var dictionary = generator.Generate<IDictionary<byte, string>>();
 
@@ -387,7 +387,7 @@ namespace Rog.Tests
         {
             var generator = RandomObjectGenerator.Default;
 
-            generator.NullChance = 0.20f;
+            generator.SetNullChanceFor<NullableValueTypeProvider>(0.2f);
 
             var events = GenerateInstancesOf<Event>();
 
