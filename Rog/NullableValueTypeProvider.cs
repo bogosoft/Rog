@@ -3,31 +3,24 @@
 namespace Rog
 {
     /// <summary>
-    /// An implementation of the <see cref="IValueProvider"/> contract that can generate
+    /// An implementation of the <see cref="NullProviderBase"/> contract that can generate
     /// random values (including nulls) for nullable value types.
     /// </summary>
-    public class NullableValueTypeProvider : IValueProvider
+    public class NullableValueTypeProvider : NullProviderBase
     {
         /// <summary>
-        /// Get a value from the current provider.
+        /// Get a non-null value from a type that otherwise allows nulls.
         /// </summary>
         /// <param name="context">
         /// The context within which a value will be generated.
         /// </param>
-        /// <returns>A generated value.</returns>
-        public object GetValue(GenerationContext context)
+        /// <returns>A generated non-null value.</returns>
+        protected override object GetNonNullValue(GenerationContext context)
         {
-            if (context.RollForNull())
-            {
-                return null;
-            }
-            else
-            {
-                return context.Generate(
-                    Nullable.GetUnderlyingType(context.CurrentType),
-                    context.AssociatedAttributes
-                    );
-            }
+            return context.Generate(
+                Nullable.GetUnderlyingType(context.CurrentType),
+                context.AssociatedAttributes
+                );
         }
 
         /// <summary>
@@ -38,7 +31,7 @@ namespace Rog
         /// <returns>
         /// True if the given type can be used to generate a value for; false otherwise.
         /// </returns>
-        public bool Matches(Type type)
+        public override bool Matches(Type type)
         {
             return type.IsValueType && Nullable.GetUnderlyingType(type) != null;
         }

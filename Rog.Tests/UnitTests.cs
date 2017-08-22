@@ -397,6 +397,22 @@ namespace Rog.Tests
         }
 
         [TestCase]
+        public void NumberOfNullComplexTypesGeneratedIsControllableByNullChancePercentage()
+        {
+            var generator = RandomObjectGenerator.Default;
+
+            generator.SetNullChanceFor<DefaultComplexTypeProvider>(0);
+
+            var count = 10000;
+
+            generator.Generate<DefaultPlanet>(count).Count(x => x == null).ShouldEqual(0);
+
+            generator.SetNullChanceFor<DefaultComplexTypeProvider>(10);
+
+            generator.Generate<DefaultPlanet>(count).Count(x => x == null).ShouldBeGreaterThan(0);
+        }
+
+        [TestCase]
         public void RequiredAttributeOnStringMemberIsHonored()
         {
             var people = GenerateInstancesOf<Person>();
