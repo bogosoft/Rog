@@ -35,12 +35,6 @@ namespace Rog
         /// </summary>
         public int MinStringLength = 16;
 
-        /// <summary>
-        /// Get or set a value, between 0 and 1, corresponding to the chance that a nullable
-        /// type will have a null value returned against it.
-        /// </summary>
-        public float NullChance = 0.25f;
-
         IRandomNumberGenerator rng;
 
         /// <summary>
