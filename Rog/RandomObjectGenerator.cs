@@ -17,7 +17,7 @@ namespace Rog
             {
                 var rog = new DefaultRandomObjectGenerator(new DefaultRandomNumberGenerator());
 
-                rog.ValueProviders.Add(new NullableValueTypeProvider { NullChance = 0.25f });
+                rog.ValueProviders.Add(new NullableValueTypeProvider());
                 rog.ValueProviders.Add(new RandomEnumValueProvider());
                 rog.ValueProviders.Add(x => x.NextBoolean());
                 rog.ValueProviders.Add(x => x.NextByte());
@@ -40,7 +40,7 @@ namespace Rog
                 rog.ValueProviders.Add(new ListProvider());
                 rog.ValueProviders.Add(new DictionaryProvider());
                 rog.ValueProviders.Add(new RandomKeyValuePairProvider());
-                rog.ValueProviders.Add(new RandomStringProvider { NullChance = 0.25f });
+                rog.ValueProviders.Add(new RandomStringProvider());
                 rog.ValueProviders.Add(new TypedArrayProvider());
                 rog.ValueProviders.Add(new TypedEnumerableProvider());
                 rog.ValueProviders.Add(new DefaultComplexTypeProvider());

@@ -10,7 +10,7 @@ namespace Rog
     /// An implementation of the <see cref="IValueProvider"/> contract which can
     /// generate objects against a given complex type.
     /// </summary>
-    public sealed class DefaultComplexTypeProvider : NullProviderBase
+    public sealed class DefaultComplexTypeProvider : IValueProvider
     {
         const BindingFlags Flags = BindingFlags.Instance | BindingFlags.Public;
 
@@ -52,7 +52,7 @@ namespace Rog
         /// The context within which a value will be generated.
         /// </param>
         /// <returns>A generated non-null value.</returns>
-        protected override object GetNonNullValue(GenerationContext context)
+        public object GetValue(GenerationContext context)
         {
             var data = GetConstructorData(context.CurrentType);
 
@@ -81,6 +81,6 @@ namespace Rog
         /// <returns>
         /// True if the given type can be used to generate a value for; false otherwise.
         /// </returns>
-        public override bool Matches(Type type) => !type.IsAbstract && !type.IsInterface;
+        public bool Matches(Type type) => !type.IsAbstract && !type.IsInterface;
     }
 }

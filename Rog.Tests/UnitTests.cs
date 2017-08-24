@@ -90,7 +90,7 @@ namespace Rog.Tests
         {
             var generator = RandomObjectGenerator.Default;
 
-            generator.SetNullChanceFor<RandomStringProvider>(0);
+            generator.NullChances.SetChanceFor<string>(0);
 
             var dictionary = generator.Generate<IDictionary<byte, string>>();
 
@@ -387,9 +387,9 @@ namespace Rog.Tests
         {
             var generator = RandomObjectGenerator.Default;
 
-            generator.SetNullChanceFor<NullableValueTypeProvider>(0.2f);
+            generator.NullChances.SetChanceFor<Guid?>(0.2f);
 
-            var events = GenerateInstancesOf<Event>();
+            var events = generator.Generate<Event>(DefaultCount);
 
             events.Count(x => ReferenceEquals(null, x.Id)).ShouldEqual(0);
 
@@ -401,13 +401,13 @@ namespace Rog.Tests
         {
             var generator = RandomObjectGenerator.Default;
 
-            generator.SetNullChanceFor<DefaultComplexTypeProvider>(0);
+            generator.NullChances.SetChanceFor<DefaultPlanet>(0);
 
             var count = 10000;
 
             generator.Generate<DefaultPlanet>(count).Count(x => x == null).ShouldEqual(0);
 
-            generator.SetNullChanceFor<DefaultComplexTypeProvider>(10);
+            generator.NullChances.SetChanceFor<DefaultPlanet>(10);
 
             generator.Generate<DefaultPlanet>(count).Count(x => x == null).ShouldBeGreaterThan(0);
         }
@@ -415,7 +415,11 @@ namespace Rog.Tests
         [TestCase]
         public void RequiredAttributeOnStringMemberIsHonored()
         {
-            var people = GenerateInstancesOf<Person>();
+            var generator = RandomObjectGenerator.Default;
+
+            generator.NullChances.SetChanceFor<string>(20);
+
+            var people = generator.Generate<Person>(DefaultCount);
 
             people.Count(x => x.Name != null).ShouldEqual(DefaultCount);
 
